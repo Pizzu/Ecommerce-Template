@@ -13,8 +13,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+        "@components/*": ["components/*"],
+        "@pages/*": ["pages/*"],
+        "@styles/*": ["styles/*"],
+        "@hooks/*": ["hooks/*"],
+        "@providers/*": ["providers/*"],
+        "@lib/*": ["lib/*"],
+        "@types/*": ["types/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/sanity/index.ts"],
   "exclude": ["node_modules"]
 }

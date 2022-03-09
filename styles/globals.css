@@ -1,16 +1,16 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap');
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  box-sizing: border-box;
+@layer base {
+    html {
+        @apply font-nunito-sans text-html-base xl:text-html-xl lg:text-html-lg md:text-html-md sm:text-html-sm;
+    }
+}
+@layer components {
+    .container {
+        @apply max-w-screen-xl py-20 lg:px-20 md:px-10 sm:px-6;
+    }
 }
