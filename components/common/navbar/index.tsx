@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
   const { isLogged } = useAccount()
 
   return (
-    <header>
+    <header className="absolute w-full">
       <div className="container pt-8 pb-0">
         <nav className="flex items-center justify-between">
           <Link href="/" passHref>

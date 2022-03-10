@@ -25,4 +25,8 @@
     .caption {
         @apply text-caption font-semibold uppercase tracking-widest
     }
+
+    .nav-link {
+        @apply text-nav-link font-semibold uppercase tracking-[0.08rem]
+    }
 }

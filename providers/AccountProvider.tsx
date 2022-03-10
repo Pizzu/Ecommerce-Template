@@ -8,10 +8,10 @@ const AccountContext = createContext<UserAccount>({})
 const AccountProvider: React.FC = ({ children }) => {
   const { data, status } = useSession()
   const [userAccount, setUserAccount] = useState<UserAccount>({isLoading: true})
-  console.log(status)
+
   useEffect(() => {
-    console.log("I RUN")
     const createUserAccount = async () => {
+      console.log("I RUN")
       if (status === "authenticated") {
         const currentUser: User = await fetch("/api/user/getCurrentUser", {
           method: "GET",
