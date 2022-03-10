@@ -13,8 +13,9 @@ const Home: NextPage<{courses: [Course]}> = ({courses}) => {
   return (
     <section>
       <div className="container">
-        <h1 className="text-3xl font-light mb-4">Welcome to Prisma</h1>
-        <p className="text-lg mb-4">Current User: {isLogged && user?.email }</p>
+        <h1 className="mb-4 text-primary font-semibold">Welcome to Prisma</h1>
+        <p className="caption">Electron JS</p>
+        <p className="mb-4 text-secondary">Current User: {isLogged && user?.email }</p>
         <div className="mt-10 grid grid-cols-2 gap-24">
           <CourseList courses={courses} render={(course: Course) => <CourseCard key={course._id} course={course} />} />
         </div>

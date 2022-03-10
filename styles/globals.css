@@ -8,9 +8,21 @@
     html {
         @apply font-nunito-sans text-html-base xl:text-html-xl lg:text-html-lg md:text-html-md sm:text-html-sm;
     }
+
+    h1 {@apply leading-snug text-[4.06rem]}
+    h2 {@apply leading-snug text-[3.125rem]}
+    h3 {@apply leading-snug text-[2.5rem]}
+    h4 {@apply leading-snug text-[2.18rem]}
+    h5 {@apply leading-snug text-[1.88rem]}
+    h6 {@apply leading-snug text-[1.56rem]}
+    p {@apply leading-normal text-[1.38rem]}
 }
 @layer components {
     .container {
         @apply max-w-screen-xl py-20 lg:px-20 md:px-10 sm:px-6;
+    }
+
+    .caption {
+        @apply text-caption font-semibold uppercase tracking-widest
     }
 }
