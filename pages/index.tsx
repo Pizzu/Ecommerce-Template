@@ -23,11 +23,12 @@ export default Home
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const courses = await sanityClient.fetch(coursesQuery)
-
+  
   return {
     props: { 
-      session:  await getSession(context),
+      session: await getSession(context),
       courses 
     },
   }
 }
+

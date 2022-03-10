@@ -20,14 +20,24 @@ const Hero: React.FC = () => {
             </div>
           </div>
           <div className="col-span-2 bg-white p-8">
-            <div className={`text-center opacity-0 translate-y-2 ${!isLoading && "opacity-100 translate-y-0"} transition-all duration-300`}>
-              <div className="relative w-[3.63rem] h-[3.63rem] m-auto mb-6">
-                <Image src="/star.svg" alt="star" layout="fill" />
+            {isLogged ?
+              <div className={`text-center opacity-0 translate-y-2 ${!isLoading && "opacity-100 translate-y-0"} transition-all duration-300`}>
+                <div className="relative w-[3.63rem] h-[3.63rem] m-auto mb-6">
+                  <Image src="/star.svg" alt="star" layout="fill" />
+                </div>
+                <p className="caption mb-6">Welcome {user?.name}, you are already logged in</p>
+                <p className="bg-grey-light inline-block px-3 py-1 mb-16">{user?.email}</p>
+                <button className="nav-link bg-primary text-white py-1 px-5">Dashboard</button>
               </div>
-              <p className="caption mb-6">Welcome {user?.name}, you are already logged in</p>
-              <p className="bg-grey-light inline-block px-3 py-1 mb-16">{user?.email}</p>
-              <button className="nav-link bg-primary text-white py-1 px-5">Dashboard</button>
-            </div>
+              :
+              <div className={`text-center opacity-0 translate-y-2 ${!isLoading && "opacity-100 translate-y-0"} transition-all duration-300`}>
+                <div className="relative w-[3.63rem] h-[3.63rem] m-auto mb-6">
+                  <Image src="/star.svg" alt="star" layout="fill" />
+                </div>
+                <p className="caption mb-6">Welcome sign in to access your courses</p>
+                <button className="nav-link bg-primary text-white py-1 px-5">Sign In</button>
+              </div>
+            }
           </div>
         </div>
       </div>

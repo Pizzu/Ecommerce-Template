@@ -12,5 +12,5 @@ export default NextAuth({
       clientId: "115857946070-ub9gjglnecjru3aremb110cjvba0npnd.apps.googleusercontent.com",
       clientSecret: "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",
     }),
-  ],
+  ]
 })
