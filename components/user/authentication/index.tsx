@@ -1,6 +1,7 @@
 import { useAccount } from "@providers/AccountProvider"
 import Image from "next/image"
 import { Button, ButtonLink } from "@components/common"
+import { signIn } from "next-auth/react"
 
 const Authentication: React.FC = () => {
 
@@ -15,7 +16,9 @@ const Authentication: React.FC = () => {
           </div>
           <p className="caption mb-6">Welcome {user?.name}, you are already logged in</p>
           <p className="bg-grey-light inline-block px-3 py-1 mb-16">{user?.email}</p>
-          <ButtonLink href="/dashboard" className="bg-primary text-white">Dashboard</ButtonLink>
+          <div>
+            <ButtonLink href="/dashboard" className="bg-primary text-white">Dashboard</ButtonLink>
+          </div>
         </div>
         :
         <div className={`text-center opacity-0 translate-y-2 ${!isLoading && "opacity-100 translate-y-0"} transition-all duration-300`}>
@@ -24,7 +27,7 @@ const Authentication: React.FC = () => {
           </div>
           <p className="caption mb-16">Welcome! Sign in now to access your courses</p>
           <div className="grid justify-center gap-5">
-            <Button className="bg-primary text-white">
+            <Button onClick={() => signIn("google")} className="bg-primary text-white">
               <div className="flex items-center">
                 <div className="relative w-[2.06rem] h-[2.06rem] mr-5">
                   <Image src="/google.svg" alt="google_icon" layout="fill" />
@@ -32,7 +35,7 @@ const Authentication: React.FC = () => {
                 Google Sign In
               </div>
             </Button>
-            <Button className="bg-primary text-white">
+            <Button onClick={() => signIn("github")} className="bg-primary text-white">
               <div className="flex items-center">
                 <div className="relative w-[2.06rem] h-[2.06rem] mr-5">
                   <Image src="/github.svg" alt="github_icon" layout="fill" />

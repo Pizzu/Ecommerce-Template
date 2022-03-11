@@ -11,7 +11,6 @@ const AccountProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     const createUserAccount = async () => {
-      console.log("I RUN")
       if (status === "authenticated") {
         const currentUser: User = await fetch("/api/user/getCurrentUser", {
           method: "GET",
