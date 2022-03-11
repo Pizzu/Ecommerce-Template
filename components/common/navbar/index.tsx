@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { useAccount } from "@providers/AccountProvider"
 import { signIn, signOut } from 'next-auth/react'
+import { Button } from "@components/common"
 
 const Navbar: React.FC = () => {
 
@@ -24,9 +25,9 @@ const Navbar: React.FC = () => {
               <button className="text-black nav-link">Profile</button>
             </Link>
             {!isLogged && !isLoading ?
-              <button onClick={() => signIn("google")} className="bg-black px-6 py-3 text-white text-lg">Log In</button>
+              <Button onClick={() => signIn("google")} className="bg-black text-white">Log In</Button>
               :
-              <button onClick={() => signOut()} className="bg-black px-6 py-3 text-white text-lg">Logout</button>
+              <Button onClick={() => signOut()} className="bg-black text-white">Logout</Button>
             }
           </div>
         </nav>

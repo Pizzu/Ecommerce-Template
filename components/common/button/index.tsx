@@ -8,7 +8,7 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({ children, onClick, className, isDisabled=false }) => {
   return (
-    <button onClick={onClick} disabled={isDisabled} className={`nav-link py-1 px-5 ${className}`}>
+    <button onClick={onClick} disabled={isDisabled} className={`nav-link py-2 px-5 ${className}`}>
       {children}
     </button>
   )
