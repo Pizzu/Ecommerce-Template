@@ -1,6 +1,7 @@
 import { useAccount } from "@providers/AccountProvider"
 import Image from "next/image"
-import { Button } from "@components/common"
+import Link from "next/link"
+import { Button, ButtonLink } from "@components/common"
 
 const Hero: React.FC = () => {
 
@@ -28,7 +29,7 @@ const Hero: React.FC = () => {
                 </div>
                 <p className="caption mb-6">Welcome {user?.name}, you are already logged in</p>
                 <p className="bg-grey-light inline-block px-3 py-1 mb-16">{user?.email}</p>
-                <Button className="bg-primary text-white">Dashboard</Button>
+                <ButtonLink href="/dashboard" className="bg-primary text-white">Dashboard</ButtonLink>
               </div>
               :
               <div className={`text-center opacity-0 translate-y-2 ${!isLoading && "opacity-100 translate-y-0"} transition-all duration-300`}>
