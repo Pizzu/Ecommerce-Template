@@ -12,6 +12,6 @@ export type Course = {
   slug: string,
   type: string,
   description: string,
-  image: string,
+  coverImage: string,
   lectures: [string]
 }

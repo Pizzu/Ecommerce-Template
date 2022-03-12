@@ -11,7 +11,7 @@ const Home: NextPage<{courses: [Course]}> = ({courses}) => {
     <>
       <Hero />
       <div className="container">
-        <div className="mt-10 grid grid-cols-2 gap-24">
+        <div className="mt-10 grid grid-cols-2 gap-24 sm:grid-cols-1">
           <CourseList courses={courses} render={(course: Course) => <CourseCard key={course._id} course={course} />} />
         </div>
       </div>
