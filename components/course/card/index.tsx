@@ -1,4 +1,4 @@
-import { Course } from "types/";
+import type { Course } from "types/";
 import Image from "next/image"
 import { urlFor } from "@lib/sanity"
 import { ButtonLink } from "@components/common";
@@ -17,7 +17,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         <p className="caption text-primary mb-3">{course.type}</p>
         <h5 className="mb-2">{course.title}</h5>
         <p className="mb-12">{course.description.substring(0, 75)}...</p>
-        <ButtonLink className="bg-primary text-white" href={`/courses/${course.slug}`}>
+        <ButtonLink className="bg-primary text-white" href={`/courses/${course.slug.current}`}>
           Get Started
         </ButtonLink>
       </div>

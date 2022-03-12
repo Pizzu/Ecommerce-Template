@@ -9,7 +9,9 @@ export type UserAccount = {
 export type Course = {
   _id: string
   title: string,
-  slug: string,
+  slug: {
+    current: string
+  },
   type: string,
   description: string,
   coverImage: string,
