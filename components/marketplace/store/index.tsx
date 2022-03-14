@@ -1,5 +1,6 @@
 import type { Course } from "../../../types"
 import { CourseList, CourseCard } from "@components/course"
+import Link from "next/link"
 
 const MarketplaceStore: React.FC<{ courses: [Course] }> = ({ courses }) => {
   return (
@@ -12,7 +13,9 @@ const MarketplaceStore: React.FC<{ courses: [Course] }> = ({ courses }) => {
             you will be asked to pay for a single course or upgrade to a 
             PRO membership which will give you access to all of my courses.
           </p>
-          <p className="caption text-secondary">Become a pro member</p>
+          <Link href={"/membership"} passHref>
+            <a className="caption text-secondary">Become a pro member</a>  
+          </Link>
         </div>
         <div className="mt-10 grid grid-cols-2 gap-24 sm:grid-cols-1">
           <CourseList courses={courses} render={(course: Course) => <CourseCard key={course._id} course={course} />} />
