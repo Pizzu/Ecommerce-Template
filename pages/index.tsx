@@ -8,10 +8,10 @@ import { MarketplaceStore } from '@components/marketplace'
 
 const Home: NextPage<{ courses: [Course] }> = ({ courses }) => {
   return (
-    <>
+    <main>
       <Hero />
       <MarketplaceStore courses={courses} />
-    </>
+    </main>
   )
 }
 
