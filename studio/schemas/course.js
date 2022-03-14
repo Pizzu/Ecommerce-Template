@@ -2,8 +2,7 @@ const courseSchema = {
   name: "course",
   title: "Course",
   type: "document",
-  fields: [
-    {
+  fields: [{
       name: "title",
       title: "Course title",
       type: "string"
@@ -36,10 +35,16 @@ const courseSchema = {
       }
     },
     {
+      name: "courseContent",
+      title: "Course Content",
+      type: 'array',
+      of: [{type: 'block'}]
+    }, 
+    {
       name: "lectures",
       title: "Course Lectures",
       type: "array",
-      of: [{ type: "string" }]
+      of: [{type: "string"}]
     }
   ]
 }

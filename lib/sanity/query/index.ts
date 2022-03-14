@@ -14,6 +14,7 @@ export const courseQuery = `*[_type == "course" && slug.current == $slug][0] {
   description,
   slug,
   coverImage,
+  courseContent,
   skills[] {
     _key,
     image,
