@@ -8,13 +8,13 @@ import { PortableText } from "@portabletext/react";
 const CoursePage: NextPage<{ course: Course }> = ({ course }) => {
   return (
     <section>
-      <div className="container">
+      <div className="container py-[9rem]">
         <h1>{course.title}</h1>
-        <div className="grid grid-flow-row gap-5">
+        <div className="grid grid-flow-row gap-5 mt-10">
           {course.body.map((section, index) => (
             <div key={index}>
               <h2 className="mb-2">{section.sectionTitle}</h2>
-              <div className="grid grid-flow-row gap-5" >
+              <div className="prose max-w-none prose-a:text-nav-link prose-a:uppercase prose-a:text-secondary prose-a:no-underline">
                 <PortableText value={section.sectionContent} />
               </div>
             </div>

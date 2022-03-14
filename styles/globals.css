@@ -16,6 +16,7 @@
     h5 {@apply leading-snug text-[1.88rem]}
     h6 {@apply leading-snug text-[1.56rem]}
     p {@apply leading-normal text-[1.38rem]}
+    li {@apply leading-normal text-[1.38rem]}
 }
 @layer components {
     .container {
