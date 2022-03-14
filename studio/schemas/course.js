@@ -35,16 +35,28 @@ const courseSchema = {
       }
     },
     {
-      name: "courseContent",
-      title: "Course Content",
+      name: "body",
+      title: "Course Body",
       type: 'array',
-      of: [{type: 'block'}]
+      of: [
+        {
+          name: "courseSection",
+          title: "Course Section",
+          type: 'object',
+          fields: [
+            {name: "sectionTitle", title: "Section Title", type: "string"},
+            {name: "sectionContent", title: "Section Content", type: "array", of: [{type: "block"}]}
+          ]
+        },
+      ]
     }, 
     {
       name: "lectures",
       title: "Course Lectures",
       type: "array",
-      of: [{type: "string"}]
+      of: [
+        {type: "string"},
+      ]
     }
   ]
 }

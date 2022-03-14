@@ -15,6 +15,11 @@ export type Course = {
   type: string,
   description: string,
   coverImage: string,
-  courseContent: string,
+  body: [CourseSection],
   lectures: [string]
+}
+
+export type CourseSection = {
+  sectionTitle: string,
+  sectionContent: [any]
 }
