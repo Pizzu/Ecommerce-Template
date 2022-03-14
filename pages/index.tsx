@@ -18,7 +18,7 @@ const Home: NextPage<{ courses: [Course] }> = ({ courses }) => {
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const courses = await sanityClient.fetch(coursesQuery)
+  const courses: [Course] = await sanityClient.fetch(coursesQuery)
 
   return {
     props: {

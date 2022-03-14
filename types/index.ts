@@ -15,5 +15,6 @@ export type Course = {
   type: string,
   description: string,
   coverImage: string,
+  courseContent: string,
   lectures: [string]
 }
