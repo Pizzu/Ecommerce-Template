@@ -56,32 +56,17 @@ const courseSchema = {
       type: "array",
       of: [
         {
-          name: "courseChapters",
-          title: "Course Chapter",
+          name: "lesson",
+          title: "Lesson",
           type: "object",
           fields: [
-            {name: "chapterTitle", title: "Chapter Title", type: "string"},
-            {
-              name: "chapterLessons", 
-              title: "Chapter Lessons", 
-              type: "array", 
-              of: [
-                {
-                  name: "lesson",
-                  title: "Lesson",
-                  type: "object",
-                  fields: [
-                    {name: "lessonTitle", title: "Lesson Title", type: "string"},
-                    {name: "lessonSlug", title: "Lesson Slug", type: "slug", options: {source: "lessonTitle", maxLength: 96}},
-                    {name: "lessonDescription", title: "Lesson Description", type: "text"},
-                    {name: "lessonDuration", title: "Lesson Duration", type: "string"},
-                    {name: "isLessonFree", title: "Is Lesson Free", type: "boolean", initialValue: false},
-                    {name: "lessonVideoUrl", title: "Lesson Video URL", type: "url"},
-                    {name: "lessonContent", title: "Lesson Content", type: "array", of: [{type: "block"}]}
-                  ]
-                }
-              ]
-            }
+            {name: "lessonTitle", title: "Lesson Title", type: "string"},
+            {name: "lessonSlug", title: "Lesson Slug", type: "slug", options: {source: "lessonTitle", maxLength: 96}},
+            {name: "lessonDescription", title: "Lesson Description", type: "text"},
+            {name: "lessonDuration", title: "Lesson Duration", type: "string"},
+            {name: "isLessonFree", title: "Is Lesson Free", type: "boolean", initialValue: false},
+            {name: "lessonVideoUrl", title: "Lesson Video URL", type: "url"},
+            {name: "lessonContent", title: "Lesson Content", type: "array", of: [{type: "block"}]}
           ]
         }
       ]

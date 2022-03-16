@@ -23,15 +23,11 @@ export const courseQuery = `*[_type == "course" && slug.current == $slug][0] {
   },
   lectures[] {
     _key,
-    chapterTitle,
-    chapterLessons[] {
-      _key,
-      lessonTitle,
-      lessonSlug,
-      lessonDescription,
-      lessonDuration,
-      isLessonFree
-    }
+    lessonTitle,
+    lessonSlug,
+    lessonDescription,
+    lessonDuration,
+    isLessonFree
   }
 }`
 

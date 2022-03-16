@@ -16,18 +16,12 @@ export type Course = {
   description: string,
   coverImage: string,
   body: [CourseSection],
-  lectures: [CourseChapter]
+  lectures: [CourseLesson]
 }
 
 export type CourseSection = {
   sectionTitle: string,
   sectionContent: [any]
-}
-
-export type CourseChapter = {
-  _key: string,
-  chapterTitle: string,
-  chapterLessons: [CourseLesson]
 }
 
 export type CourseLesson = {

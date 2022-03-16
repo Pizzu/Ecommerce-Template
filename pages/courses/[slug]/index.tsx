@@ -1,6 +1,6 @@
 import { sanityClient } from "@lib/sanity";
 import { courseQuery } from "@lib/sanity/query";
-import type { Course } from "../../types";
+import type { Course } from "../../../types";
 import { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { CourseBody, CourseHero, CourseCurriculum } from "@components/course";
