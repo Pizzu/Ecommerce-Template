@@ -21,7 +21,18 @@ export const courseQuery = `*[_type == "course" && slug.current == $slug][0] {
     title,
     description
   },
-  lectures[]
+  lectures[] {
+    _key,
+    chapterTitle,
+    chapterLessons[] {
+      _key,
+      lessonTitle,
+      lessonSlug,
+      lessonDescription,
+      lessonDuration,
+      isLessonFree
+    }
+  }
 }`
 
 export const coursesPath = `*[_type == "course" && defined(slug.current)]{

@@ -10,7 +10,7 @@ const CoursePage: NextPage<{ course: Course }> = ({ course }) => {
     <main>
       <CourseHero title={course.title} description={course.description} coverImage={course.coverImage} />
       <CourseBody body={course.body} />
-      <CourseCurriculum />
+      <CourseCurriculum lectures={course.lectures} courseSlug={course.slug}/>
     </main>
   )
 }
