@@ -49,6 +49,7 @@ model User {
   proPlan       Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
+  ownedCourses  OwnedCourse[]
 }
 
 model VerificationToken {
@@ -57,4 +58,13 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model OwnedCourse {
+  id      String @id @default(cuid())
+  key     String
+  title   String
+  userId  String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
