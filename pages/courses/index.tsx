@@ -1,8 +1,11 @@
+// Libraries
 import { sanityClient } from "@lib/sanity";
 import { coursesQuery } from "@lib/sanity/query";
-import type { Course } from "../../types";
-import { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
+// Types
+import { GetServerSideProps, NextPage } from "next";
+import type { Course } from "../../types";
+// Components
 import { CourseList, CourseCard } from "@components/course";
 
 const CoursesPage: NextPage<{ courses: [Course] }> = ({ courses }) => {

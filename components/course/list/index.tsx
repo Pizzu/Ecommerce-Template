@@ -1,4 +1,5 @@
-import { Course } from "types/"
+// Types
+import type { Course } from "types/"
 
 type CourseListProps = {
   courses: [Course],

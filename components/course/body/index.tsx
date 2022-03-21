@@ -1,4 +1,6 @@
+// Types
 import type { CourseSection } from "../../../types"
+// Components
 import { PortableText } from "@portabletext/react";
 
 type CourseBodyProps = {

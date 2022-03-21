@@ -1,3 +1,4 @@
+// Components
 import { Authentication } from "@components/user"
 
 const Hero: React.FC = () => {

@@ -1,4 +1,6 @@
+// Types
 import type { CourseLesson } from "../../../types"
+// Components
 import Link from "next/link"
 
 type CourseCurriculumProps = {

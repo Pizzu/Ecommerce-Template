@@ -1,6 +1,9 @@
-import type { Course } from "types/";
-import Image from "next/image"
+// Libraries
 import { urlFor } from "@lib/sanity"
+// Types
+import type { Course } from "types/";
+// Components
+import Image from "next/image"
 import { ButtonLink } from "@components/common";
 
 type CourseCardProps = {

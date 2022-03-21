@@ -1,5 +1,7 @@
-import Link from "next/link"
+// Libraries
 import { useRouter } from "next/router"
+// Components
+import Link from "next/link"
 
 type ActiveLinkProps = {
   href: string

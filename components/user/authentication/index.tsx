@@ -1,4 +1,6 @@
+// Libraries
 import { useAccount } from "@providers/AccountProvider"
+// Components
 import Image from "next/image"
 import { Button, ButtonLink } from "@components/common"
 import { signIn } from "next-auth/react"

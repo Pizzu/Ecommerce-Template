@@ -1,5 +1,7 @@
-import Image from "next/image"
+// Libraries
 import { urlFor } from "@lib/sanity"
+// Components
+import Image from "next/image"
 
 type CourseHeroProps = {
   title: string,

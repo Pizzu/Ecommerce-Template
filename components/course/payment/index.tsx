@@ -1,7 +1,10 @@
+// Libraries
 import getStripe from "@lib/stripe"
-import { Button } from "@components/common"
-import type { Course } from "../../../types"
 import { useAccount } from "@providers/AccountProvider"
+// Types
+import type { Course } from "../../../types"
+// Components
+import { Button } from "@components/common"
 
 type CoursePaymentProps = {
   course: Course

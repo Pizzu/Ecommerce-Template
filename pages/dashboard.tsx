@@ -1,10 +1,12 @@
-import { OwnedCourse, User } from "@prisma/client";
+// Libraries
 import { prisma } from "@lib/prisma";
-import { GetServerSideProps, NextPage } from "next";
-import { getSession } from "next-auth/react";
 import { sanityClient } from "@lib/sanity";
 import { ownedCoursesQuery } from "@lib/sanity/query";
+import { getSession } from "next-auth/react";
+// Types
+import type { GetServerSideProps, NextPage } from "next";
 import type { Course } from "../types";
+// Components
 
 const DashboardPage: NextPage<{ courses: [Course] }> = ({courses}) => {
   return (

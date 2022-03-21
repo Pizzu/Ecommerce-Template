@@ -1,8 +1,11 @@
-import type { NextPage, GetServerSideProps } from 'next'
+// Libraries
 import { getSession } from "next-auth/react"
 import { coursesQuery } from '@lib/sanity/query'
 import { sanityClient } from '@lib/sanity'
+// Types
+import type { NextPage, GetServerSideProps } from 'next'
 import type { Course } from 'types/'
+// Components
 import { Hero } from '@components/common'
 import { MarketplaceStore } from '@components/marketplace'
 

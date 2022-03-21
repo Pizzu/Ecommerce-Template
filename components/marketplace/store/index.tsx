@@ -1,4 +1,6 @@
+// Types
 import type { Course } from "../../../types"
+// Components
 import { CourseList, CourseCard } from "@components/course"
 import Link from "next/link"
 

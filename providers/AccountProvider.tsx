@@ -1,5 +1,7 @@
+// Libraries
 import { useSession } from "next-auth/react"
 import { createContext, useContext, useEffect, useState } from "react"
+// Types
 import type { UserAccount } from "../types"
 import type { User } from "@prisma/client"
 

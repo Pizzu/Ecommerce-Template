@@ -1,7 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
+// Libraries
 import Stripe from 'stripe'
 import { buffer } from "micro"
 import { prisma } from "@lib/prisma";
+// Types
+import { NextApiRequest, NextApiResponse } from "next";
+
 
 export const config = {
   api: {
@@ -26,8 +29,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log(`Webhook error: ${error.message}`)
       return res.status(400).send(`Webhook error: ${error.message}`)
     }
-
-    console.log("Event:", event)
 
     switch (event.type) {
       case "customer.created":

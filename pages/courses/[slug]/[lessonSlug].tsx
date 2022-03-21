@@ -1,10 +1,13 @@
+// Libraries
 import { sanityClient } from "@lib/sanity";
-import type { Course, CourseLesson } from "../../../types";
-import { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { courseLessonQuery } from "@lib/sanity/query";
-import { PortableText } from "@portabletext/react";
+// Types
+import type { GetServerSideProps, NextPage } from "next";
+import type { Course, CourseLesson } from "../../../types";
+// Components
 import ReactPlayer from "react-player";
+import { PortableText } from "@portabletext/react";
 
 const LessonPage: NextPage<{ course: Course & { currentLecture: CourseLesson } }> = ({ course }) => {
   return (
