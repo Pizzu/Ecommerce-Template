@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     ],
     mode: 'payment',
-    success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${req.headers.origin}/dashboard`,
     cancel_url: `${req.headers.origin}/checkout`,
   });
 
