@@ -29,6 +29,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     payment_method_types: ["card"],
     customer_email: !customerId ? user.email as string : undefined,
     customer: customerId,
+    metadata: {
+      key: course._id,
+      title: course.title,
+      user: user.id
+    },
     line_items: [
       {
         price_data: {

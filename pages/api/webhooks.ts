@@ -38,6 +38,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.status(500).send(`Webhook error: ${error.message}`)
         }
         break
+      case "checkout.session.completed":
+        const charge = event.data.object as Stripe.Charge
+        try {
+          await prisma.ownedCourse.create({data: {key: charge.metadata.key, title: charge.metadata.title, userId: charge.metadata.user}})
+        } catch (error: any) {
+          res.status(500).send(`Webhook error: ${error.message}`)
+        }
+        break
+
       default:
         // Do Nothing
         console.log("Event not handled")
