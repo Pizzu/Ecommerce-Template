@@ -1,25 +1,45 @@
+import { urlFor } from '@lib/sanity'
+import type { User } from '@prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { getSession } from 'next-auth/react'
 import Stripe from 'stripe'
+import type { Course } from '../../../types'
 
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: "2020-08-27" })
 
+type CheckoutSessionBody = {
+  user: User,
+  course: Course
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // const { quantity } = req.body
-  const { email } = req.body
+
+  const { user, course }: CheckoutSessionBody = req.body
+  const session = await getSession({req})
   
-  const session = await stripe.checkout.sessions.create({
+  if (!session) {
+    return res.status(401)
+  }
+  
+  // Retrive customer if exists
+  const customerId = user.customerId || undefined 
+
+  // Create check out session
+  const checkoutSession = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    customer_email: email,
+    customer_email: !customerId ? user.email as string : undefined,
+    customer: customerId,
     line_items: [
       {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: 'T-shirt',
+            name: course.title,
+            description: course.description,
+            images: [urlFor(course.coverImage).url()]
           },
-          unit_amount: 250,
+          unit_amount: 1900,
         },
-        // price: "price_1KaprQIgDGNpeWIZ94DAuzeB",
         quantity: 1
       },
     ],
@@ -27,7 +47,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${req.headers.origin}/checkout`,
   });
-  console.log(session.id)
 
-  res.status(200).json({sessionId: session.id})
+  res.status(200).json({sessionId: checkoutSession.id})
 }
