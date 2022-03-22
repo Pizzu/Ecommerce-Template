@@ -4,14 +4,14 @@ import { useAccount } from "@providers/AccountProvider"
 // Types
 import type { Course } from "../../../types"
 // Components
-import { Button } from "@components/common"
+import { Button, ButtonLink } from "@components/common"
 
 type CoursePaymentProps = {
   course: Course
 }
 
 const CoursePayment: React.FC<CoursePaymentProps> = ({ course }) => {
-  const { user, isLogged } = useAccount()
+  const { user, isLogged, isLoading } = useAccount()
 
   const handleCheckout = async () => {
     // Call backend to create the checkout session
@@ -35,7 +35,13 @@ const CoursePayment: React.FC<CoursePaymentProps> = ({ course }) => {
     <section>
       <div className="container">
         <div className="text-center">
-          <Button isDisabled={!isLogged} onClick={handleCheckout} className="bg-primary text-white">Buy at $19.00</Button>
+          {!isLoading &&
+            isLogged ?
+            <Button isDisabled={!isLogged} onClick={handleCheckout} className="bg-primary text-white">Buy at $19.00</Button>
+            :
+            <ButtonLink href="/" className="bg-primary text-white">Sign In to buy</ButtonLink>
+          }
+
         </div>
       </div>
     </section>
