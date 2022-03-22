@@ -7,12 +7,15 @@ import { getSession } from "next-auth/react";
 import type { GetServerSideProps, NextPage } from "next";
 import type { Course } from "../types";
 // Components
+import { CourseList, CourseCard } from "@components/course";
 
-const DashboardPage: NextPage<{ courses: [Course] }> = ({courses}) => {
+const DashboardPage: NextPage<{ courses: [Course] }> = ({ courses }) => {
   return (
-    <div className="container">
+    <div className="container py-[9rem]">
       <h1>Dashboard page</h1>
-      <h3>{courses[0].title}</h3>
+      <div className="mt-10 grid grid-cols-2 gap-24 sm:grid-cols-1">
+        <CourseList courses={courses} render={(course: Course) => <CourseCard key={course._id} course={course} />} />
+      </div>
     </div>
   )
 }
@@ -33,13 +36,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   // We retrive the current user from the session and we fetch it from the db with all the ownedCourses
-  const currentUser = await prisma.user.findUnique({where: {email: session.user?.email as string}, include: {ownedCourses: true} })
+  const currentUser = await prisma.user.findUnique({ where: { email: session.user?.email as string }, include: { ownedCourses: true } })
   const coursesIDs = currentUser?.ownedCourses.map(ownedCourse => ownedCourse.key)
   // We query exactly the courses owned by that user from sanity
-  const courses: [Course] = await sanityClient.fetch(ownedCoursesQuery, {coursesIDs})
+  const courses: [Course] = await sanityClient.fetch(ownedCoursesQuery, { coursesIDs })
 
   return {
-    props: { 
+    props: {
       session,
       courses
     },
