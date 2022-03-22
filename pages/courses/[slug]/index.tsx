@@ -2,6 +2,7 @@
 import { getSession } from "next-auth/react";
 import { sanityClient } from "@lib/sanity";
 import { courseQuery } from "@lib/sanity/query";
+import { useOwnedCourse } from "@hooks/useOwnedCourse";
 // Types
 import type { GetServerSideProps, NextPage } from "next";
 import type { Course } from "../../../types";
@@ -9,11 +10,16 @@ import type { Course } from "../../../types";
 import { CourseBody, CourseHero, CourseCurriculum, CoursePayment } from "@components/course";
 
 const CoursePage: NextPage<{ course: Course }> = ({ course }) => {
+
+  const { isCourseOwned } = useOwnedCourse(course)
+
   return (
     <main>
-      <CourseHero title={course.title} description={course.description} coverImage={course.coverImage} />
+      <CourseHero title={course.title} description={course.description} coverImage={course.coverImage} isCourseOwned={isCourseOwned} />
       <CourseBody body={course.body} />
-      <CoursePayment course={course} />
+      { !isCourseOwned &&  
+        <CoursePayment course={course} />
+      }
       <CourseCurriculum lectures={course.lectures} courseSlug={course.slug}/>
     </main>
   )

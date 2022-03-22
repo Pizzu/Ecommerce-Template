@@ -12,7 +12,7 @@ type CourseCurriculumProps = {
 
 const CourseCurriculum: React.FC<CourseCurriculumProps> = ({ lectures, courseSlug }) => {
   return (
-    <section>
+    <section id="curriculum">
       <div className="container">
         <h2 className="text-primary text-center mb-6">Course Lectures</h2>
         <div className="mx-auto max-w-4xl">
