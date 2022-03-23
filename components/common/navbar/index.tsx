@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
   const { isLogged, isLoading } = useAccount()
 
   return (
-    <header className="absolute w-full bg-primary">
+    <header className="fixed w-full bg-primary z-50">
       <div className="container pt-8 pb-5">
         <nav className="flex items-center justify-between">
           <Link href="/" passHref>
