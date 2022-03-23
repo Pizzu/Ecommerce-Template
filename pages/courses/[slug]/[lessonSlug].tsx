@@ -8,19 +8,29 @@ import type { Course, CourseLesson } from "../../../types";
 // Components
 import ReactPlayer from "react-player";
 import { PortableText } from "@portabletext/react";
+import { useOwnedCourse } from "@hooks/useOwnedCourse";
 
 const LessonPage: NextPage<{ course: Course & { currentLecture: CourseLesson } }> = ({ course }) => {
+
+  const { isCourseOwned } = useOwnedCourse(course)
+
   return (
     <section>
       <div className="container">
-        <h1>{course.currentLecture.lessonTitle}</h1>
-        <p>{course.currentLecture.lessonDescription}</p>
-        <ReactPlayer url={course.currentLecture.lessonVideoUrl} controls={true} width="100%" height="30rem"/>
-        <div className="prose max-w-none prose-headings:leading-snug prose-headings:font-normal 
+        {isCourseOwned || course.currentLecture.isLessonFree ?
+          <div>
+            <h1>{course.currentLecture.lessonTitle}</h1>
+            <p>{course.currentLecture.lessonDescription}</p>
+            <ReactPlayer url={course.currentLecture.lessonVideoUrl} controls={true} width="100%" height="30rem" />
+            <div className="prose max-w-none prose-headings:leading-snug prose-headings:font-normal 
         prose-h1:text-[4.06rem] prose-h2:text-[3.125rem] prose-h3:text-[2.5rem] prose-h4:text-[2.18rem] 
         prose-a:text-nav-link prose-a:uppercase prose-a:text-secondary prose-a:no-underline">
-          <PortableText value={course.currentLecture.lessonContent} />
-        </div>
+              <PortableText value={course.currentLecture.lessonContent} />
+            </div>
+          </div>
+          :
+          <p>Buy the course</p>
+        }
       </div>
     </section>
   )
