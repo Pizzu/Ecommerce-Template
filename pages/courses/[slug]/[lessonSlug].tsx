@@ -36,7 +36,7 @@ const LessonPage: NextPage<{ course: Course & { currentLecture: CourseLesson } }
             ))}
           </div>
         </aside>
-        <div className="container px-8 pr-[8rem] pt-[9rem] w-auto ml-96 md:ml-auto md:px-10">
+        <article className="container px-8 pr-[8rem] pt-[9rem] w-auto ml-96 md:ml-auto md:px-10">
           {isCourseOwned || course.currentLecture.isLessonFree ?
             <div>
               <h1>{course.currentLecture.lessonTitle}</h1>
@@ -51,7 +51,7 @@ const LessonPage: NextPage<{ course: Course & { currentLecture: CourseLesson } }
             :
             <p>Buy the course</p>
           }
-        </div>
+        </article>
       </div>
     </section>
   )
