@@ -10,8 +10,8 @@ const Navbar: React.FC = () => {
   const { isLogged, isLoading } = useAccount()
 
   return (
-    <header className="absolute w-full">
-      <div className="container pt-8 pb-0">
+    <header className="absolute w-full bg-primary">
+      <div className="container pt-8 pb-5">
         <nav className="flex items-center justify-between">
           <Link href="/" passHref>
             <button className="nav-link text-black font-bold">Ecommerce Template</button>
