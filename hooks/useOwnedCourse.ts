@@ -6,7 +6,7 @@ import type { Course } from "../types"
 
 export const useOwnedCourse = (course: Course) => {
   const { isLogged } = useAccount()
-  const { data, error, isValidating, ...rest } = useSWR(() =>
+  const { data, error, isValidating, ...rest } = useSWR(
     (isLogged) ? `/api/user/ownedCourses/${course._id}` : null,
     async (url) => {
       const isOwned: boolean = await fetch(url, {
