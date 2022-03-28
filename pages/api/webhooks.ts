@@ -42,12 +42,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       case "checkout.session.completed":
         const charge = event.data.object as Stripe.Charge
         try {
-          await prisma.ownedCourse.create({data: {key: charge.metadata.key, title: charge.metadata.title, userId: charge.metadata.user}})
+          await prisma.ownedCourse.create({ data: { key: charge.metadata.key, title: charge.metadata.title, userId: charge.metadata.user } })
         } catch (error: any) {
           res.status(500).send(`Webhook error: ${error.message}`)
         }
         break
-
+      case "charge.refunded":
+        const refund = event.data.object as Stripe.Charge
+        // We retrive the checkout session used to purchase the course by using the payment intent
+        const checkoutSession = await stripe.checkout.sessions.list({ payment_intent: refund.payment_intent as string })
+        // We get the userID and the courseID we want to refund
+        const userID = checkoutSession.data[0].metadata?.user
+        const courseID = checkoutSession.data[0].metadata?.key
+        // We delete the refunded course for the specific user from the prisma db
+        try {
+          await prisma.ownedCourse.deleteMany({ where: { key: courseID, AND: { userId: userID } } })
+        } catch (error: any) {
+          res.status(500).send(`Webhook error: ${error.message}`)
+        }
       default:
         // Do Nothing
         console.log("Event not handled")

@@ -12,7 +12,8 @@ import { CourseList, CourseCard } from "@components/course";
 const DashboardPage: NextPage<{ courses: [Course] }> = ({ courses }) => {
   return (
     <div className="container py-[9rem]">
-      <h1>Dashboard page</h1>
+      <h1>Keep watching your courses</h1>
+      <p>Here you can find all the courses you own</p>
       <div className="mt-10 grid grid-cols-2 gap-24 sm:grid-cols-1">
         <CourseList courses={courses} render={(course: Course) => <CourseCard key={course._id} course={course} />} />
       </div>
