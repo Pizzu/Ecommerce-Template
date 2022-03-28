@@ -20,12 +20,16 @@ const Navbar: React.FC = () => {
             <ActiveLink href="/courses">
               Courses
             </ActiveLink>
-            <ActiveLink href="/dashboard">
-              Dashboard
-            </ActiveLink>
-            <ActiveLink href="/profile">
-              Profile
-            </ActiveLink>
+            {isLogged && (
+              <>
+                <ActiveLink href="/dashboard">
+                  Dashboard
+                </ActiveLink>
+                <ActiveLink href="/profile">
+                  Profile
+                </ActiveLink>
+              </>
+            )}
             {!isLogged && !isLoading ?
               <Button onClick={() => signIn("google")} className="bg-black text-white">Log In</Button>
               :
