@@ -28,7 +28,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       session: await getSession(context),
-      course
-    }
+      course: course ? course : null
+    },
+    notFound: !course ? true : false
   }
 }
