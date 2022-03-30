@@ -5,8 +5,7 @@ import { prisma } from "@lib/prisma";
 import type { GetServerSideProps, NextPage } from "next";
 import type { OrderCourse } from "@prisma/client";
 // Components
-import { CourseList } from "@components/course";
-import { ButtonLink } from "@components/common";
+import { CourseList, OrderCourseCard } from "@components/course";
 
 const OrdersPage: NextPage<{ orderCourses: OrderCourse[] }> = ({ orderCourses }) => {
   return (
@@ -17,13 +16,8 @@ const OrdersPage: NextPage<{ orderCourses: OrderCourse[] }> = ({ orderCourses })
             <h1>Your orders</h1>
             <p>Here you can find all your orders and download the receipts</p>
           </div>
-          <div className="grid grid-flow-row">
-            <div className="bg-white p-8 shadow-xl">
-              <h3 className="mb-8">{orderCourses[0].title}</h3>
-              <div>
-                <ButtonLink href={orderCourses[0].receipt} newTab={true} className="bg-primary text-white">Full Invoice</ButtonLink>
-              </div>
-            </div>
+          <div className="grid grid-flow-row gap-6">
+            <CourseList courses={orderCourses} render={(orderCourse: OrderCourse) => <OrderCourseCard key={orderCourse.id} orderCourse={orderCourse}/>} />
           </div>
         </div>
       </section>
