@@ -5,7 +5,6 @@ import { prisma } from "@lib/prisma";
 // Types
 import { NextApiRequest, NextApiResponse } from "next";
 
-
 export const config = {
   api: {
     bodyParser: false
@@ -40,9 +39,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         break
       case "checkout.session.completed":
-        const charge = event.data.object as Stripe.Charge
+        const charge = event.data.object as Stripe.Checkout.Session
         try {
-          await prisma.ownedCourse.create({ data: { key: charge.metadata.key, title: charge.metadata.title, userId: charge.metadata.user } })
+          const paymentIntent = await stripe.paymentIntents.retrieve(charge.payment_intent as string)
+          const receiptURL = paymentIntent.charges.data[0].receipt_url
+          await prisma.orderCourse.create({ data: { key: charge.metadata?.key || "", title: charge.metadata?.title || "", receipt: receiptURL as string, userId: charge.metadata?.user || "" } })
         } catch (error: any) {
           res.status(500).send(`Webhook error: ${error.message}`)
         }
@@ -56,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const courseID = checkoutSession.data[0].metadata?.key
         // We delete the refunded course for the specific user from the prisma db
         try {
-          await prisma.ownedCourse.deleteMany({ where: { key: courseID, AND: { userId: userID } } })
+          await prisma.orderCourse.deleteMany({ where: { key: courseID, AND: { userId: userID } } })
         } catch (error: any) {
           res.status(500).send(`Webhook error: ${error.message}`)
         }

@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { courseId } = req.query
   const user = await prisma.user.findUnique({ where: { email: session.user?.email as string } })
-  const ownedCourse = await prisma.ownedCourse.findFirst({where: {key: courseId as string, AND: {userId: user?.id}}})
+  const orderCourse = await prisma.orderCourse.findFirst({where: {key: courseId as string, AND: {userId: user?.id}}})
 
-  return res.status(200).json(ownedCourse || user?.proPlan ? true : false)
+  return res.status(200).json(orderCourse || user?.proPlan ? true : false)
 } 

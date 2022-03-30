@@ -37,8 +37,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   // We retrive the current user from the session and we fetch it from the db with all the ownedCourses
-  const currentUser = await prisma.user.findUnique({ where: { email: session.user?.email as string }, include: { ownedCourses: true } })
-  const coursesIDs = currentUser?.ownedCourses.map(ownedCourse => ownedCourse.key)
+  const currentUser = await prisma.user.findUnique({ where: { email: session.user?.email as string }, include: { orderCourses: true } })
+  const coursesIDs = currentUser?.orderCourses.map(orderCourse => orderCourse.key)
   // We query exactly the courses owned by that user from sanity
   const courses: [Course] = await sanityClient.fetch(ownedCoursesQuery, { coursesIDs })
 
