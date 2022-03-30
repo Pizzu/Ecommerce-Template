@@ -1,8 +1,9 @@
 // Types
+import { OrderCourse } from "@prisma/client"
 import type { Course } from "types/"
 
 type CourseListProps = {
-  courses: [Course],
+  courses: (Course | OrderCourse)[],
   render: Function
 }
 

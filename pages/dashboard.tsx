@@ -9,7 +9,7 @@ import type { Course } from "../types";
 // Components
 import { CourseList, CourseCard } from "@components/course";
 
-const DashboardPage: NextPage<{ courses: [Course] }> = ({ courses }) => {
+const DashboardPage: NextPage<{ courses: Course[] }> = ({ courses }) => {
   return (
     <div className="container py-[9rem]">
       <h1>Keep watching your courses</h1>

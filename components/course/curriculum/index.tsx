@@ -4,7 +4,7 @@ import type { CourseLesson } from "../../../types"
 import Link from "next/link"
 
 type CourseCurriculumProps = {
-  lectures: [CourseLesson],
+  lectures: CourseLesson[],
   courseSlug: {
     current: string
   }

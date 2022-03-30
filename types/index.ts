@@ -16,13 +16,13 @@ export type Course = {
   type: string,
   description: string,
   coverImage: string,
-  body: [CourseSection],
-  lectures: [CourseLesson]
+  body: CourseSection[],
+  lectures: CourseLesson[]
 }
 
 export type CourseSection = {
   sectionTitle: string,
-  sectionContent: [any]
+  sectionContent: any[]
 }
 
 export type CourseLesson = {
@@ -35,5 +35,5 @@ export type CourseLesson = {
   lessonDuration: string,
   isLessonFree: string,
   lessonVideoUrl: string,
-  lessonContent: [any]
+  lessonContent: any[]
 }

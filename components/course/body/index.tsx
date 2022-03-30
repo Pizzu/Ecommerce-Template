@@ -4,7 +4,7 @@ import type { CourseSection } from "../../../types"
 import { PortableText } from "@portabletext/react";
 
 type CourseBodyProps = {
-  body: [CourseSection]
+  body: CourseSection[]
 }
 
 const CourseBody: React.FC<CourseBodyProps> = ({ body }) => {
