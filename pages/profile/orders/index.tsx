@@ -16,9 +16,15 @@ const OrdersPage: NextPage<{ orderCourses: OrderCourse[] }> = ({ orderCourses })
             <h1>Your orders</h1>
             <p>Here you can find all your orders and download the receipts</p>
           </div>
-          <div className="grid grid-flow-row gap-6">
-            <CourseList courses={orderCourses} render={(orderCourse: OrderCourse) => <OrderCourseCard key={orderCourse.id} orderCourse={orderCourse}/>} />
-          </div>
+          {orderCourses.length > 0 ?
+            <div className="grid grid-flow-row gap-6">
+              <CourseList courses={orderCourses} render={(orderCourse: OrderCourse) => <OrderCourseCard key={orderCourse.id} orderCourse={orderCourse} />} />
+            </div>
+            :
+            <div className="bg-primary px-4 py-6 mt-10">
+              <p>⚠️ Currently you do not own any course! You will be able to see your orders here after the purchase</p>
+            </div>
+          }
         </div>
       </section>
     </main>

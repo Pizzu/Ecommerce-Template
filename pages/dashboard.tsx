@@ -14,9 +14,16 @@ const DashboardPage: NextPage<{ courses: Course[] }> = ({ courses }) => {
     <div className="container py-[9rem]">
       <h1>Keep watching your courses</h1>
       <p>Here you can find all the courses you own</p>
-      <div className="mt-10 grid grid-cols-2 gap-24 sm:grid-cols-1">
-        <CourseList courses={courses} render={(course: Course) => <CourseCard key={course._id} course={course} />} />
-      </div>
+      {courses.length > 0 ?
+        <div className="mt-10 grid grid-cols-2 gap-24 sm:grid-cols-1">
+          <CourseList courses={courses} render={(course: Course) => <CourseCard key={course._id} course={course} />} />
+        </div>
+        :
+        <div className="bg-primary px-4 py-6 mt-10">
+          <p>⚠️ Currently you do not own any course! You will be able to see your courses here after the purchase</p>
+        </div>
+      }
+
     </div>
   )
 }
