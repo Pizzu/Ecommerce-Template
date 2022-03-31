@@ -3,10 +3,19 @@ import { getSession } from "next-auth/react";
 // Types
 import type { GetServerSideProps, NextPage } from "next";
 // Components
+import { SubscriptionItem } from "@components/user";
 
 const MembershipPage: NextPage = () => {
   return (
     <main>
+      <section>
+        <div className="container py-[9rem]">
+          <h1>Upgrade to Pro Now</h1>
+          <div className="grid grid-flow-row mt-8">
+            <SubscriptionItem iconURL="/rocket.svg" price={50} />
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

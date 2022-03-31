@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 // Types
 import type { GetServerSideProps, NextPage } from "next";
 // Components
-import { ProfileItem } from "@components/common";
+import { ProfileItem } from "@components/user";
 
 const ProfilePage: NextPage = () => {
 

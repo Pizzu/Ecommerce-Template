@@ -23,7 +23,6 @@ const DashboardPage: NextPage<{ courses: Course[] }> = ({ courses }) => {
           <p>⚠️ Currently you do not own any course! You will be able to see your courses here after the purchase</p>
         </div>
       }
-
     </div>
   )
 }
