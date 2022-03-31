@@ -21,7 +21,8 @@ const CoursePayment: React.FC<CoursePaymentProps> = ({ course }) => {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           user,
-          course
+          course,
+          isSubscription: false
         })
       }).then(res => res.json())
       // When the users clicks on the button, redirect them to the checkout

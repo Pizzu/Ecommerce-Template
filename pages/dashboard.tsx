@@ -1,7 +1,7 @@
 // Libraries
 import { prisma } from "@lib/prisma";
 import { sanityClient } from "@lib/sanity";
-import { ownedCoursesQuery } from "@lib/sanity/query";
+import { coursesQuery, ownedCoursesQuery } from "@lib/sanity/query";
 import { getSession } from "next-auth/react";
 // Types
 import type { GetServerSideProps, NextPage } from "next";
@@ -44,9 +44,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // We retrive the current user from the session and we fetch it from the db with all the ownedCourses
   const currentUser = await prisma.user.findUnique({ where: { email: session.user?.email as string }, include: { orderCourses: true } })
-  const coursesIDs = currentUser?.orderCourses.map(orderCourse => orderCourse.key)
-  // We query exactly the courses owned by that user from sanity
-  const courses: [Course] = await sanityClient.fetch(ownedCoursesQuery, { coursesIDs })
+  
+  // If the current user has a PRO Membership plan, we will retrive all the available courses, otherwise only the one he owns
+  let courses: [Course]
+
+  if (currentUser?.proPlan) {
+    courses = await sanityClient.fetch(coursesQuery)
+  } else {
+    const coursesIDs = currentUser?.orderCourses.map(orderCourse => orderCourse.key)
+    // We query exactly the courses owned by that user from sanity
+    courses = await sanityClient.fetch(ownedCoursesQuery, { coursesIDs })
+  }
 
   return {
     props: {

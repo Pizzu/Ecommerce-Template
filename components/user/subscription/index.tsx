@@ -4,6 +4,7 @@ import { useAccount } from "@providers/AccountProvider";
 // Components
 import Image from "next/image";
 import { Button, ButtonLink } from "@components/common";
+import getStripe from "@lib/stripe";
 
 type SubscriptionItemProps = {
   iconURL: string,
@@ -15,7 +16,20 @@ const SubscriptionItem: React.FC<SubscriptionItemProps> = ({ iconURL, price }) =
   const { isLogged, isLoading, user } = useAccount()
 
   const handleSubscription = async () => {
+    if (isLogged && !user?.proPlan) {
+      const { sessionId } = await fetch("/api/checkout/session", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          user,
+          isSubscription: true
+        })
+      }).then(res => res.json())
 
+      const stripe = await getStripe()
+      const { error } = await stripe!.redirectToCheckout({ sessionId })
+      console.warn(error.message);
+    }
   }
 
   return (

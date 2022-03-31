@@ -40,14 +40,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         break
       case "checkout.session.completed":
         const charge = event.data.object as Stripe.Checkout.Session
-        try {
-          const paymentIntent = await stripe.paymentIntents.retrieve(charge.payment_intent as string)
-          const receiptURL = paymentIntent.charges.data[0].receipt_url
-          await prisma.orderCourse.create({ data: { key: charge.metadata?.key || "", title: charge.metadata?.title || "", receipt: receiptURL as string, userId: charge.metadata?.user || "" } })
-        } catch (error: any) {
-          res.status(500).send(`Webhook error: ${error.message}`)
+        console.log(charge)
+        if (charge.mode === "subscription") {
+          try { 
+            await prisma.user.update({ where: { email: charge.customer_details?.email as string }, data: { proPlan: true } })
+          } catch (error: any) {
+            res.status(500).send(`Webhook error: ${error.message}`)
+          }
+        } else {
+          try {
+            const paymentIntent = await stripe.paymentIntents.retrieve(charge.payment_intent as string)
+            const receiptURL = paymentIntent.charges.data[0].receipt_url
+            await prisma.orderCourse.create({ data: { key: charge.metadata?.key || "", title: charge.metadata?.title || "", receipt: receiptURL as string, userId: charge.metadata?.user || "" } })
+          } catch (error: any) {
+            res.status(500).send(`Webhook error: ${error.message}`)
+          }
         }
         break
+      case 'invoice.payment_failed':
+        // The payment failed or the customer does not have a valid payment method.
+        // The subscription becomes past_due. Notify your customer and send them to the
+        // customer portal to update their payment information.
+        break;
       case "charge.refunded":
         const refund = event.data.object as Stripe.Charge
         // We retrive the checkout session used to purchase the course by using the payment intent
