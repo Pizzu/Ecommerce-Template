@@ -24,6 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       if (!signature || !webhookSecret) return
       event = stripe.webhooks.constructEvent(buf, signature, webhookSecret)
+      console.log(event.data.object)
     } catch (error: any) {
       console.log(`Webhook error: ${error.message}`)
       return res.status(400).send(`Webhook error: ${error.message}`)
@@ -57,10 +58,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
         }
         break
-      case 'invoice.payment_failed':
+      case 'customer.subscription.deleted':
         // The payment failed or the customer does not have a valid payment method.
-        // The subscription becomes past_due. Notify your customer and send them to the
-        // customer portal to update their payment information.
+        // console.log(event.data.object)
         break;
       case "charge.refunded":
         const refund = event.data.object as Stripe.Charge

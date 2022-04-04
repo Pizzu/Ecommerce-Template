@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({subscription: null})
   }
 
-  const data = await stripe.customers.retrieve(user.customerId as string, {expand: ["subscriptions"]})
+  const data = await stripe.customers.retrieve(user.customerId as string, {expand: ["subscriptions", "subscriptions.data.latest_invoice"]})
 
   return res.status(200).json(data)
 } 
