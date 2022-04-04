@@ -4,6 +4,7 @@ import { buffer } from "micro"
 import { prisma } from "@lib/prisma";
 // Types
 import { NextApiRequest, NextApiResponse } from "next";
+import { checkoutSessionCompleted, createCustomer, customerSubscriptionDeleted, chargeRefunded } from '@lib/stripe/controllers';
 
 export const config = {
   api: {
@@ -32,52 +33,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     switch (event.type) {
       case "customer.created":
-        const customer = event.data.object as Stripe.Customer
         try {
-          await prisma.user.update({ where: { email: customer.email as string }, data: { customerId: customer.id } })
+          await createCustomer(event.data.object as Stripe.Customer)
         } catch (error: any) {
           res.status(500).send(`Webhook error: ${error.message}`)
         }
         break
       case "checkout.session.completed":
-        const charge = event.data.object as Stripe.Checkout.Session
-        console.log(charge)
-        if (charge.mode === "subscription") {
-          try { 
-            await prisma.user.update({ where: { email: charge.customer_details?.email as string }, data: { proPlan: true } })
-          } catch (error: any) {
-            res.status(500).send(`Webhook error: ${error.message}`)
-          }
-        } else {
-          try {
-            const paymentIntent = await stripe.paymentIntents.retrieve(charge.payment_intent as string)
-            const receiptURL = paymentIntent.charges.data[0].receipt_url
-            await prisma.orderCourse.create({ data: { key: charge.metadata?.key || "", title: charge.metadata?.title || "", receipt: receiptURL as string, userId: charge.metadata?.user || "" } })
-          } catch (error: any) {
-            res.status(500).send(`Webhook error: ${error.message}`)
-          }
+        try {
+          await checkoutSessionCompleted(event.data.object as Stripe.Checkout.Session, stripe)
+        } catch (error: any) {
+          res.status(500).send(`Webhook error: ${error.message}`)
         }
         break
       case 'customer.subscription.deleted':
-        const subscription = event.data.object as Stripe.Subscription
         try {
-          // Fetch customer and update pro plan field back to false
-          const customer = await stripe.customers.retrieve(subscription.customer as string) as Stripe.Customer
-          await prisma.user.update({ where: { email: customer.email as string }, data: { proPlan: false } })
+          await customerSubscriptionDeleted(event.data.object as Stripe.Subscription, stripe)
         } catch (error: any) {
           res.status(500).send(`Webhook error: ${error.message}`)
         }
         break;
       case "charge.refunded":
-        const refund = event.data.object as Stripe.Charge
-        // We retrive the checkout session used to purchase the course by using the payment intent
-        const checkoutSession = await stripe.checkout.sessions.list({ payment_intent: refund.payment_intent as string })
-        // We get the userID and the courseID we want to refund
-        const userID = checkoutSession.data[0].metadata?.user
-        const courseID = checkoutSession.data[0].metadata?.key
-        // We delete the refunded course for the specific user from the prisma db
         try {
-          await prisma.orderCourse.deleteMany({ where: { key: courseID, AND: { userId: userID } } })
+          await chargeRefunded(event.data.object as Stripe.Charge, stripe)
         } catch (error: any) {
           res.status(500).send(`Webhook error: ${error.message}`)
         }
