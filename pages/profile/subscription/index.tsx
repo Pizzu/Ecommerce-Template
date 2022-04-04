@@ -9,6 +9,7 @@ import type { GetServerSideProps, NextPage } from "next";
 // Components
 import Moment from "react-moment";
 import { Button, ButtonLink } from "@components/common";
+import { Loader } from "@components/common";
 
 const SubscriptionPage: NextPage = () => {
 
