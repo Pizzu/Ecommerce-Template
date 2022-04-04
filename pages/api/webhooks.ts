@@ -59,8 +59,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         break
       case 'customer.subscription.deleted':
-        // The payment failed or the customer does not have a valid payment method.
-        // console.log(event.data.object)
+        const subscription = event.data.object as Stripe.Subscription
+        try {
+          // Fetch customer and update pro plan field back to false
+          const customer = await stripe.customers.retrieve(subscription.customer as string) as Stripe.Customer
+          await prisma.user.update({ where: { email: customer.email as string }, data: { proPlan: false } })
+        } catch (error: any) {
+          res.status(500).send(`Webhook error: ${error.message}`)
+        }
         break;
       case "charge.refunded":
         const refund = event.data.object as Stripe.Charge

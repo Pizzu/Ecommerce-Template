@@ -17,7 +17,7 @@ const SubscriptionPage: NextPage = () => {
   const { data, error, isValidating, ...rest } = useSWR(
     (isLogged && user) ? "/api/user/subscription/getUserSubscription" : null,
     async (url) => {
-      const customer: Stripe.Customer = await fetch(url, {
+      const { customer }: { customer: Stripe.Customer | null } = await fetch(url, {
         method: "GET",
         headers: { "content-type": "application/json" }
       }).then(res => res.json())
@@ -25,9 +25,16 @@ const SubscriptionPage: NextPage = () => {
       return customer
     }
   )
-    console.log(data)
+
   const handleCancelSubscription = async (subscriptionID: string) => {
     console.log(subscriptionID)
+    const { subscription }: { subscription: Stripe.Subscription | null } = await fetch("/api/user/subscription/deleteUserSubscription", {
+      method: "POST",
+      body: JSON.stringify({ subscriptionID }),
+      headers: { "content-type": "application/json" }
+    }).then(res => res.json())
+
+    console.log(subscription)
   }
 
   return (
