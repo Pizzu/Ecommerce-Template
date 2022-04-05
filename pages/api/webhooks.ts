@@ -1,7 +1,6 @@
 // Libraries
 import Stripe from 'stripe'
 import { buffer } from "micro"
-import { prisma } from "@lib/prisma";
 // Types
 import { NextApiRequest, NextApiResponse } from "next";
 import { checkoutSessionCompleted, createCustomer, customerSubscriptionDeleted, chargeRefunded } from '@lib/stripe/controllers';
