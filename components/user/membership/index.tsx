@@ -11,7 +11,7 @@ type SubscriptionItemProps = {
   price: number
 }
 
-const SubscriptionItem: React.FC<SubscriptionItemProps> = ({ iconURL, price }) => {
+const MembershipItem: React.FC<SubscriptionItemProps> = ({ iconURL, price }) => {
 
   const { isLogged, isLoading, user } = useAccount()
 
@@ -61,4 +61,4 @@ const SubscriptionItem: React.FC<SubscriptionItemProps> = ({ iconURL, price }) =
   )
 }
 
-export default SubscriptionItem
+export default MembershipItem
