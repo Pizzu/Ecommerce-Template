@@ -2,6 +2,8 @@
 import Stripe from "stripe";
 import { getSession } from "next-auth/react";
 import { useUserSubscription } from "@hooks/useUserSubscription";
+import { useAccount } from "@providers/AccountProvider";
+import { useUserBilling } from "@hooks/useUserBilling";
 // Types
 import type { GetServerSideProps, NextPage } from "next";
 // Components
@@ -10,8 +12,9 @@ import { Button, ButtonLink } from "@components/common";
 import { Loader } from "@components/common";
 
 const SubscriptionPage: NextPage = () => {
-
+  const { user } = useAccount()
   const { customer, isInitialized } = useUserSubscription()
+  const { url } = useUserBilling()
 
   const handleCancelSubscription = async (subscriptionID: string) => {
     await fetch("/api/user/subscription/deleteUserSubscription", {
@@ -68,9 +71,12 @@ const SubscriptionPage: NextPage = () => {
                 ))
             }
           </div>
-          <div>
-            <h3 className="caption">Manage Billing Information</h3>
-          </div>
+          {user?.customerId &&
+            <div>
+              <h3 className="caption mb-6">Manage Billing Information</h3>
+              <ButtonLink href={`${url ? url : ""}`} className="bg-primary text-white">Manage Billing</ButtonLink>
+            </div>
+          }
         </div>
       </section>
     </main>

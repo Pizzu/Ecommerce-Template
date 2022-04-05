@@ -3,13 +3,13 @@ import Stripe from "stripe"
 import useSWR from "swr"
 import { useAccount } from "@providers/AccountProvider"
 
-export const useUserSubscription = () => {
+export const useUserBilling = () => {
   const { isLogged } = useAccount()
   const { data, error, isValidating, ...rest } = useSWR(
-    (isLogged) ? "/api/user/subscription/getUserSubscription" : null,
+    (isLogged) ? "/api/user/manageBilling" : null,
     async (url) => {
-      const response: { customer: Stripe.Customer | null } = await fetch(url, {
-        method: "GET",
+      const response: { url: string | null } = await fetch(url, {
+        method: "POST",
         headers: { "content-type": "application/json" }
       }).then(res => res.json())
 
@@ -18,8 +18,7 @@ export const useUserSubscription = () => {
   )
 
   return {
-    customer: data?.customer || null,
-    isInitialized: !!(data || error),
+    url: data?.url || null,
     error,
     isValidating,
     ...rest
