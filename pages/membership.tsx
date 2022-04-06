@@ -12,7 +12,7 @@ const MembershipPage: NextPage = () => {
         <div className="container py-[9rem]">
           <h1>Upgrade to Pro Now</h1>
           <div className="grid grid-flow-row mt-8">
-            <MembershipItem iconURL="/rocket.svg" price={50} />
+            <MembershipItem iconURL="/rocket.svg" price={25} />
           </div>
         </div>
       </section>
