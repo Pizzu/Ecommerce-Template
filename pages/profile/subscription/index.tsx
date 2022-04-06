@@ -7,21 +7,23 @@ import { useUserBilling } from "@hooks/useUserBilling";
 // Types
 import type { GetServerSideProps, NextPage } from "next";
 // Components
-import Moment from "react-moment";
-import { Button, ButtonLink } from "@components/common";
+import { ButtonLink } from "@components/common";
 import { Loader } from "@components/common";
+import { SubscriptionItem } from "@components/user";
 
 const SubscriptionPage: NextPage = () => {
   const { user } = useAccount()
-  const { customer, isInitialized } = useUserSubscription()
+  const { customer, isInitialized, mutate } = useUserSubscription()
   const { url } = useUserBilling()
-
+  
   const handleCancelSubscription = async (subscriptionID: string) => {
     await fetch("/api/user/subscription/deleteUserSubscription", {
       method: "POST",
       body: JSON.stringify({ subscriptionID }),
       headers: { "content-type": "application/json" }
     }).then(res => res.json())
+
+    mutate()
   }
 
   return (
@@ -40,34 +42,7 @@ const SubscriptionPage: NextPage = () => {
                 </div>
                 :
                 customer?.subscriptions?.data.map((subscription: Stripe.Subscription) => (
-                  <div key={subscription.id} className="bg-white p-8 shadow-xl">
-                    <div className="mb-8">
-                      <h3>Pro Membership Plan</h3>
-                    </div>
-                    <div className="grid grid-flow-col gap-6 mb-16">
-                      <div>
-                        <p className="caption">Start Subscription</p>
-                        <Moment className="caption" unix format={"MM/DD/YYYY"}>{subscription.current_period_start}</Moment>
-                      </div>
-                      <div>
-                        <p className="caption">End Subscription</p>
-                        <Moment className="caption" unix format={"MM/DD/YYYY"}>{subscription.current_period_end}</Moment>
-                      </div>
-                    </div>
-                    <div className="grid grid-flow-col justify-start gap-6">
-                      <Button
-                        onClick={() => handleCancelSubscription(subscription.id)}
-                        className="bg-primary text-white">
-                        Cancel Subscription
-                      </Button>
-                      <ButtonLink
-                        href={(subscription.latest_invoice as Stripe.Invoice).hosted_invoice_url as string}
-                        newTab={true}
-                        className="bg-secondary text-white">
-                        Download Invoice
-                      </ButtonLink>
-                    </div>
-                  </div>
+                  <SubscriptionItem key={subscription.id} subscription={subscription} handleCancelSubscription={() => handleCancelSubscription(subscription.id)} />
                 ))
             }
           </div>

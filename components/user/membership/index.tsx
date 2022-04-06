@@ -12,9 +12,9 @@ type SubscriptionItemProps = {
 }
 
 const MembershipItem: React.FC<SubscriptionItemProps> = ({ iconURL, price }) => {
-
+  
   const { isLogged, isLoading, user } = useAccount()
-
+  
   const handleSubscription = async () => {
     if (isLogged && !user?.proPlan) {
       const { sessionId } = await fetch("/api/checkout/session", {
