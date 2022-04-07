@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ],
       mode: 'subscription',
       success_url: `${req.headers.origin}/dashboard`,
-      cancel_url: `${req.headers.origin}/checkout`,
+      cancel_url: `${req.headers.origin}/membership`,
     }
   } else {
     item = {
@@ -71,7 +71,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ],
       mode: 'payment',
       success_url: `${req.headers.origin}/dashboard`,
-      cancel_url: `${req.headers.origin}/checkout`,
+      cancel_url: `${req.headers.origin}/courses/${course.slug.current}`,
     }
   }
 
