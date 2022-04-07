@@ -8,13 +8,20 @@ import type { Course } from 'types/'
 // Components
 import { Hero } from '@components/common'
 import { MarketplaceStore } from '@components/marketplace'
+import { NextSeo } from "next-seo"
 
 const Home: NextPage<{ courses: [Course] }> = ({ courses }) => {
   return (
-    <main>
-      <Hero />
-      <MarketplaceStore courses={courses} />
-    </main>
+    <>
+      <NextSeo
+        description="Grow your career as a developer and learn programming and web development the easy way"
+      />
+      <main>
+        <Hero />
+        <MarketplaceStore courses={courses} />
+      </main>
+    </>
+
   )
 }
 

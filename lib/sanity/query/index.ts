@@ -46,6 +46,7 @@ export const courseLessonQuery = `*[_type == "course" && slug.current == $slug][
   type,
   description,
   slug,
+  coverImage,
   lectures[] {
       _key,
       lessonTitle,
