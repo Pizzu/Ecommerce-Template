@@ -1,6 +1,6 @@
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primary relative z-50">
+    <footer className="bg-primary">
       <div className="container">
         <div className="flex justify-between">
           <p className="caption">Ecommerce Template</p>
