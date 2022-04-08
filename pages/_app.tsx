@@ -5,7 +5,7 @@ import SEO from 'next-seo.config'
 import type { AppProps } from 'next/app'
 // Components
 import { SessionProvider } from 'next-auth/react'
-import { Navbar } from '@components/common'
+import { Navbar, Footer } from '@components/common'
 import AccountProvider from '@providers/AccountProvider'
 import { DefaultSeo } from 'next-seo'
 
@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <Navbar />
         <DefaultSeo {...SEO} />
         <Component {...pageProps} />
+        <Footer />
       </AccountProvider>
     </SessionProvider>
   )
