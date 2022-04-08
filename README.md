@@ -1,34 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ecommerce Template
 
-## Getting Started
+A Next JS Web App developed using Sanity.io, Prisma, Next Auth, and Stripe js
 
-First, run the development server:
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.36.49_pm_jf1cl8.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Web App Main Features
+On this app you can either purchase a single course or buy a membership PRO subscription and have access to all the courses. The courses and the lectures are created and fetched from a CMS (Sanity.io) where you can easily create a schema representing all the fields of the course. Every course has different lectures which may be free and accessible to everybody or require a purchase of the course before been able to watch the lecture.
+The user can also keep track of every purchase, download the receipts, cancel a subscription, and modify billing informations.
+Payments are handled through the Stripe Api and the App listens to its webhook events.
+Authentication is handled using the Next Auth and Prisma (with Postgresql) as a DB.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Some screenshots of the app
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.36.49_pm_jf1cl8.png)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.37.12_pm_p3oevi.png)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.37.41_pm_biqyet.png)
 
-## Learn More
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.39.25_pm_vcemwl.png)
 
-To learn more about Next.js, take a look at the following resources:
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.38.45_pm_gawnfr.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.38.18_pm_mfpeix.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.39.25_pm_vcemwl.png)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
