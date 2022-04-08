@@ -24,5 +24,5 @@ Authentication is handled using the Next Auth and Prisma (with Postgresql) as a 
 
 ![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.38.18_pm_mfpeix.png)
 
-![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382033/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.39.25_pm_vcemwl.png)
+![alt](https://res.cloudinary.com/lofortecoding/image/upload/v1649382034/Ecommerce%20Template/Screen_Shot_2022-04-07_at_9.38.01_pm_pufjhx.png)
 
