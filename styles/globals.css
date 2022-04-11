@@ -9,25 +9,25 @@
         @apply font-nunito-sans text-html-base xl:text-html-xl lg:text-html-lg md:text-html-md sm:text-html-sm;
     }
 
-    h1 {@apply leading-snug text-[4.06rem]}
-    h2 {@apply leading-snug text-[3.125rem]}
-    h3 {@apply leading-snug text-[2.5rem]}
-    h4 {@apply leading-snug text-[2.18rem]}
-    h5 {@apply leading-snug text-[1.88rem]}
-    h6 {@apply leading-snug text-[1.56rem]}
-    p {@apply leading-normal text-[1.38rem]}
-    li {@apply leading-normal text-[1.38rem]}
+    h1 {@apply leading-snug text-[4.06rem] sm:text-[5.06rem]}
+    h2 {@apply leading-snug text-[3.125rem] sm:text-[4.125rem]}
+    h3 {@apply leading-snug text-[2.5rem] sm:text-[3.5rem]}
+    h4 {@apply leading-snug text-[2.18rem] sm:text-[3.18rem]}
+    h5 {@apply leading-snug text-[1.88rem] sm:text-[2.88rem]}
+    h6 {@apply leading-snug text-[1.56rem] sm:text-[2.56rem]}
+    p {@apply leading-normal text-[1.38rem] sm:text-[2.38rem]}
+    li {@apply leading-normal text-[1.38rem] sm:text-[2.38rem]}
 }
 @layer components {
     .container {
-        @apply max-w-screen-xl py-20 lg:px-20 md:px-10 sm:px-6;
+        @apply max-w-screen-xl py-20 lg:px-20 md:px-16;
     }
 
     .caption {
-        @apply text-caption font-semibold uppercase tracking-widest
+        @apply text-caption font-semibold uppercase tracking-widest sm:text-[1.4rem]
     }
 
     .nav-link {
-        @apply text-nav-link font-semibold uppercase tracking-[0.08rem]
+        @apply text-nav-link font-semibold uppercase tracking-[0.08rem] sm:text-[1.5rem]
     }
 }

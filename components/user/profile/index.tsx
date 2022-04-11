@@ -13,7 +13,7 @@ type ProfileItemProps = {
 
 const ProfileItem: React.FC<ProfileItemProps> = ({iconURL, caption, ctaText, ctaURL}) => {
   return (
-    <div className="bg-white p-8 shadow-xl">
+    <div className="bg-white p-8 shadow-xl sm:p-16">
       <div className="text-center">
         <div className="relative w-[3.63rem] h-[3.63rem] m-auto mb-6">
           <Image src={iconURL} alt="star" layout="fill" />

@@ -25,7 +25,7 @@ const LessonBody: React.FC<LessonBodyProps> = ({ course }) => {
             <div className=" my-10 aspect-video">
               <ReactPlayer url={course.currentLecture.lessonVideoUrl} controls={true} width="100%" height="100%" />
             </div>
-            <div className="prose max-w-none prose-headings:mb-5 prose-headings:leading-snug prose-headings:font-normal prose-h1:text-[4.06rem] prose-h2:text-[3.125rem] prose-h3:text-[2.5rem] prose-h4:text-[2.18rem] prose-a:text-nav-link prose-a:uppercase prose-a:text-secondary prose-a:no-underline">
+            <div className="prose max-w-none prose-headings:mb-5 prose-headings:leading-snug prose-headings:font-normal prose-h1:text-[4.06rem] sm:prose-h1:text-[5.06rem] prose-h2:text-[3.125rem] sm:prose-h2:text-[4.125rem] prose-h3:text-[2.5rem] sm:prose-h3:text-[3.5rem] prose-h4:text-[2.18rem] sm:prose-h4:text-[3.18rem] prose-a:uppercase prose-a:text-secondary prose-a:no-underline">
               <PortableText value={course.currentLecture.lessonContent} />
             </div>
           </div>

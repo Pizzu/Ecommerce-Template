@@ -10,7 +10,7 @@ const Authentication: React.FC = () => {
   const { isLogged, user, isLoading } = useAccount()
 
   return (
-    <div className="col-span-2 bg-white p-8 shadow-xl">
+    <div className="col-span-2 bg-white p-8 shadow-xl sm:col-span-1">
       {isLogged ?
         <div className={`text-center opacity-0 translate-y-2 ${!isLoading && "opacity-100 translate-y-0"} transition-all duration-300`}>
           <div className="relative w-[3.63rem] h-[3.63rem] m-auto mb-6">

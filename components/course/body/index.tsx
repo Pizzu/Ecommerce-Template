@@ -15,7 +15,7 @@ const CourseBody: React.FC<CourseBodyProps> = ({ body }) => {
           {body.map((section, index) => (
             <section key={index}>
               <h3 className="mb-2">{section.sectionTitle}</h3>
-              <div className="prose max-w-none prose-a:text-nav-link prose-a:uppercase prose-a:text-secondary prose-a:no-underline">
+              <div className="prose max-w-none prose-a:uppercase prose-a:text-secondary prose-a:no-underline">
                 <PortableText value={section.sectionContent} />
               </div>
             </section>

@@ -26,7 +26,7 @@ const ProfilePage: NextPage = () => {
                 <span className="ml-2 text-secondary">{user?.proPlan ? "PRO" : "BASIC"}</span>.
               </p>
             </div>
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-6 sm:grid-cols-1">
               <ProfileItem iconURL="/receipt.svg" caption="Check your orders and download receipts here" ctaText="My Orders" ctaURL="/profile/orders" />
               <ProfileItem iconURL="/contract.svg" caption="Check and manage your current subscription here" ctaText="My Subscription" ctaURL="/profile/subscription" />
               <ProfileItem iconURL="/rocket.svg" caption="Upgrade to PRO and enjoy all the courses" ctaText="Become PRO Now" ctaURL="/membership" />
